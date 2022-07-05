@@ -1,0 +1,28 @@
+{
+  "name": "whosit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elenalaree/Whosit.git"
+  },
+  "author": "Elena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elenalaree/Whosit/issues"
+  },
+  "homepage": "https://github.com/elenalaree/Whosit#readme",
+  "devDependencies": {
+    "jest": "^28.1.2"
+  },
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
