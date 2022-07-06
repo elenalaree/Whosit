@@ -99,13 +99,13 @@ const managerPrompt = () => {
         .then(answers => {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
             rosterData.push(manager);
-            if (answers.switch === 'Engineer') {
-                addEngineer();
-            } else if (answers.switch === 'Intern') {
-                addIntern();
-            } else {
-                console.log(rosterData);
-            }
+            // if (answers.switch === 'Engineer') {
+            //     addEngineer();
+            // } else if (answers.switch === 'Intern') {
+            //     addIntern();
+            // } else {
+            //     console.log(rosterData)
+            // }
         })
 }
 
@@ -116,5 +116,5 @@ const promptUser = () => {
 };
 
 promptUser()
-    .then(answers => console.log(answers.name))
+    .then(answers => console.log(answers))
     

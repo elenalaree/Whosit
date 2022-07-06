@@ -17,7 +17,19 @@ test('creates employee object', () => {
 test('gets employee name', () => {
     const employee = new Employee('Sam');
 
-    expect(employee.getName()).toHaveProperty('name');
+    expect(employee.getName()).toBe('Sam');
 
 
 });
+
+test('gets employee id', () => {
+    const employee = new Employee('Sam', '45');
+
+    expect(employee.getId()).toBe('45');
+})
+
+test('gets roll', () => {
+    const employee = new Employee('Sam', 'Employee');
+    
+    expect(employee.getRoll()).toBe('Employee');
+})
