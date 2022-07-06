@@ -23,6 +23,12 @@ const managerQuestions = [
         type: 'input',
         name: 'office',
         message: 'What is their office number?'
+    },
+    {
+        type: 'list',
+        name: 'switch',
+        message: 'Do you want to add another team member?',
+        choices: ['Engineer', 'Intern', 'Continue without adding more']
     }
 ];
 
@@ -46,6 +52,12 @@ const engineerQuestions = [
         type: 'input',
         name: 'github',
         message: "What is their GitHub number?"
+    },
+    {
+        type: 'list',
+        name: 'switch',
+        message: 'Do you want to add another team member?',
+        choices: ['Engineer', 'Intern', 'Continue without adding more']
     }
 ];
 
@@ -69,30 +81,40 @@ const internQuestions = [
         type: 'input',
         name: 'school',
         message: "What school do they attend?"
-    }
-];
-
-const switchQuestion = [
+    },
     {
         type: 'list',
-        name: 'switchPrompt',
+        name: 'switch',
         message: 'Do you want to add another team member?',
         choices: ['Engineer', 'Intern', 'Continue without adding more']
     }
 ];
 
-const promptUser = () => {
-    if(!userInfo) {
-        const userInfo = [];
+const rosterData = [];
 
-    }
-    return inquirer
+//manager Prompt
+const managerPrompt = () => {
+    inquirer
         .prompt(managerQuestions)
-        .then((answers) => {
-            userInfo.push(answers)
+        .then(answers => {
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
+            rosterData.push(manager);
+            if (answers.switch === 'Engineer') {
+                addEngineer();
+            } else if (answers.switch === 'Intern') {
+                addIntern();
+            } else {
+                console.log(rosterData);
+            }
         })
-        ;
+}
+
+
+const promptUser = () => {
+    
+    return managerPrompt();       ;
 };
 
 promptUser()
-    .then(answers => console.log(answers));
+    .then(answers => console.log(answers.name))
+    
