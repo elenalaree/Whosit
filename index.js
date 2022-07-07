@@ -4,7 +4,8 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const generatePage = require('./src/page-template');
+const generateHTML = require('./src/page-template');
+const { writeFile, copyFile } = require('./lib/generate-site');
 
 const managerQuestions = [
     {
@@ -20,7 +21,7 @@ const managerQuestions = [
     {
         type: 'input',
         name: 'email',
-        message: "What is their GitHub username?"
+        message: "What is their email?"
     },
     {
         type: 'input',
@@ -54,7 +55,7 @@ const engineerQuestions = [
     {
         type: 'input',
         name: 'github',
-        message: "What is their GitHub number?"
+        message: "What is their GitHub name?"
     },
     {
         type: 'list',
@@ -109,7 +110,7 @@ const promptUser = () => {
             } else if (answers.switch === 'Intern') {
                 addIntern();
             } else {
-                return rosterData;
+                return generatePage();
             }})
 };
 
@@ -125,7 +126,7 @@ const addEngineer = () => {
             } else if (answers.switch === 'Intern') {
                 addIntern();
             } else {
-                return rosterData;
+                return generatePage();
             }
         });
 }
@@ -142,10 +143,17 @@ const addIntern = () => {
             } else if (answers.switch === 'Intern') {
                 addIntern();
             } else {
-                return rosterData;
+                return generatePage();
             }
         });
 }
+
+const generatePage = () => {
+    const savedHTML = generateHTML(rosterData);
+    writeFile(savedHTML);
+    copyFile();
+}
+
 
 promptUser();    
 
