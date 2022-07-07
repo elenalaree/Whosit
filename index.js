@@ -2,6 +2,9 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const generatePage = require('./src/page-template');
 
 const managerQuestions = [
     {
@@ -11,8 +14,8 @@ const managerQuestions = [
     },
     {
         type: 'input',
-        name: 'ID',
-        message: "What is their ID number?"
+        name: 'id',
+        message: "What is their id number?"
     },
     {
         type: 'input',
@@ -40,8 +43,8 @@ const engineerQuestions = [
     },
     {
         type: 'input',
-        name: 'ID',
-        message: "What is their ID number?"
+        name: 'id',
+        message: "What is their id number?"
     },
     {
         type: 'input',
@@ -65,12 +68,12 @@ const internQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "What is the engineer's name?"
+        message: "What is the intern's name?"
     },
     {
         type: 'input',
-        name: 'ID',
-        message: "What is their ID number?"
+        name: 'id',
+        message: "What is their id number?"
     },
     {
         type: 'input',
@@ -92,29 +95,57 @@ const internQuestions = [
 
 const rosterData = [];
 
-//manager Prompt
-const managerPrompt = () => {
-    inquirer
-        .prompt(managerQuestions)
-        .then(answers => {
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
-            rosterData.push(manager);
-            // if (answers.switch === 'Engineer') {
-            //     addEngineer();
-            // } else if (answers.switch === 'Intern') {
-            //     addIntern();
-            // } else {
-            //     console.log(rosterData)
-            // }
-        })
-}
 
 
 const promptUser = () => {
-    
-    return managerPrompt();       ;
+    inquirer
+        .prompt(managerQuestions)
+        .then(answers => {
+            const manager = new Manager(answers.name, answers.id, answers.email, 'Manager', answers.office);
+            rosterData.push(manager);
+
+            if (answers.switch === 'Engineer') {
+                addEngineer();
+            } else if (answers.switch === 'Intern') {
+                addIntern();
+            } else {
+                return rosterData;
+            }})
 };
 
-promptUser()
-    .then(answers => console.log(answers))
-    
+const addEngineer = () => {
+    inquirer
+        .prompt(engineerQuestions)
+        .then(answers => {
+            const engineer = new Engineer(answers.name, answers.id, answers.email, 'Engineer', answers.github);
+            rosterData.push(engineer);
+
+            if (answers.switch === 'Engineer') {
+                addEngineer();
+            } else if (answers.switch === 'Intern') {
+                addIntern();
+            } else {
+                return rosterData;
+            }
+        });
+}
+
+const addIntern = () => {
+    inquirer
+        .prompt(internQuestions)
+        .then(answers => {
+            const intern = new Intern(answers.name, answers.id, answers.email, 'Intern', answers.school);
+            rosterData.push(intern);
+
+            if (answers.switch === 'Engineer') {
+                addEngineer();
+            } else if (answers.switch === 'Intern') {
+                addIntern();
+            } else {
+                return rosterData;
+            }
+        });
+}
+
+promptUser();    
+

@@ -31,5 +31,5 @@ test('gets employee id', () => {
 test('gets roll', () => {
     const employee = new Employee('Sam', 'Employee');
     
-    expect(employee.getRoll()).toBe('Employee');
+    expect(employee.getRoll()).toBe('Employee')
 })
