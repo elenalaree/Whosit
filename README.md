@@ -1,4 +1,5 @@
 # Whosit
+by Elena Carey
 
 ## Description
 
@@ -13,11 +14,20 @@ if an Engineer or Intern are selected, the user is prompted to answer questions 
 to select a new employee or finish. Upon finishing, an html page is generated and the css page is copied from src to dist. Upon launching the website,
 a roster will show employee information.
 
+## Video
+
+[Walk Through](https://drive.google.com/file/d/1HqDN385LeAHGxdyDTp0evpR2lKJkk1yU/view)
 ![Website screenshot](./img/Screen.png)
 
 ## Tests
 
 Jest was used to test this application
 
-## Video
 
+## Github
+
+[Elenalaree](https://github.com/elenalaree)
+
+## Repository 
+
+[Whosit](https://github.com/elenalaree/Whosit)
